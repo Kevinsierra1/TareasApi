@@ -1,0 +1,64 @@
+@host = http://localhost:5080
+
+### Crear una tarea válida
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Comprar repuestos",
+  "descripcion": "Filtro de aceite y bujías",
+  "estado": "pendiente",
+  "prioridad": "alta"
+}
+
+### Crear una tarea sin título -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+  "descripcion": "Sin título, debe fallar"
+}
+
+### Crear una tarea con estado inválido -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Tarea con estado inválido",
+  "estado": "en_proceso"
+}
+
+### Intentar crear una tarea "completada" sin descripción -> 400 (regla de negocio)
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Tarea sin descripción",
+  "estado": "completada"
+}
+
+### Listar todas las tareas
+GET {{host}}/tareas
+
+### Filtrar tareas por estado
+GET {{host}}/tareas?estado=pendiente
+
+### Obtener una tarea por id
+GET {{host}}/tareas/1
+
+### Obtener una tarea inexistente -> 404
+GET {{host}}/tareas/999
+
+### Actualizar una tarea
+PUT {{host}}/tareas/1
+Content-Type: application/json
+
+{
+  "titulo": "Comprar repuestos (actualizado)",
+  "descripcion": "Filtro de aceite, bujías y pastillas de freno",
+  "estado": "en_progreso",
+  "prioridad": "media"
+}
+
+### Eliminar una tarea
+DELETE {{host}}/tareas/1
