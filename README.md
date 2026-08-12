@@ -79,3 +79,7 @@ Los `[Required]`/`[MaxLength]` de los DTOs también generan un 400 automático (
 - Persistencia real con EF Core + PostgreSQL o SQLite (reemplazando solo `TareaService` por una implementación con `DbContext`, gracias a la interfaz `ITareaService`).
 - Paginación en `GET /tareas`.
 - Pruebas unitarias con xUnit + Moq sobre `TareaService` y de integración con `WebApplicationFactory`.
+
+## Aquí se encunetra el enlace del repositorio del frontend
+
+https://github.com/Kevinsierra1/reto-react.git
